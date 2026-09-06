@@ -1,0 +1,14 @@
+# Local credentials and configuration
+.env
+.env.*
+!.env.example
+.netlify/
+.codex/
+.agents/
+
+# Dependencies and local artifacts
+node_modules/
+*.log
+__pycache__/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Prototipo conceptual de ExpoJuy 2026: agenda, expositores y recorrido personalizado." />
+  <meta name="theme-color" content="#071a24" />
+  <title>ExpoJuy Conecta 2026</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./experience.css" />
+</head>
+<body>
+  <div class="intro-screen" aria-hidden="true"><span>EXPO<span>JUY</span><i>®</i></span><small>EL NORTE NOS CONECTA</small><div class="intro-line"></div></div>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="ExpoJuy 2026, inicio">
+      <span class="brand-mark" aria-hidden="true">EJ</span>
+      <span><strong>EXPOJUY</strong><small>2026 · JUJUY, ARGENTINA</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Navegación principal">
+      <a href="#experiencia">La experiencia</a><a href="#explorar">Expositores</a><a href="#agenda">Agenda</a><a href="#mapa">Mapa</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="accessToggle" type="button" aria-pressed="false" title="Activar alto contraste">Aa</button>
+      <button class="my-expo-button" id="openDrawer" type="button">
+        Mi ExpoJuy <span class="count-badge" id="savedCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="cinema-hero" id="inicio" aria-labelledby="cinemaTitle">
+      <div class="hero-media" aria-hidden="true">
+        <img class="hero-poster" src="https://expojuy.camcomexjujuy.com.ar/build/assets/HeroFallback-C3dmciqy.jpeg" alt="" fetchpriority="high" />
+        <video id="heroVideo" muted loop playsinline preload="none" tabindex="-1" data-src="https://expojuy.camcomexjujuy.com.ar/build/assets/video-DvvGNoCh.mp4"></video>
+      </div>
+      <div class="cinema-copy">
+        <p class="cinema-eyebrow"><span></span> JUJUY, ARGENTINA · EXPOJUY CONECTA 2026</p>
+        <h1 id="cinemaTitle"><span>EL NORTE</span><span>NOS <em>CONECTA.</em></span></h1>
+        <div class="cinema-bottom">
+          <a class="round-link" href="#planificar"><span>Viví tu<br />ExpoJuy</span><b aria-hidden="true">↗</b></a>
+          <p>Ideas que se encuentran.<br />Conexiones que van más allá.</p>
+          <button class="film-link" type="button" data-open-film><span class="play-glyph" aria-hidden="true">▶</span> Mirá la experiencia <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+      <div class="cinema-foot"><a href="#experiencia">DESLIZÁ PARA DESCUBRIR <span aria-hidden="true">↓</span></a><span>IMÁGENES DE EDICIONES ANTERIORES</span><button id="motionToggle" type="button" aria-pressed="false" aria-label="Activar movimiento">▶ <span>Activar movimiento</span></button></div>
+    </section>
+
+    <div class="ticker" aria-label="Producción, innovación, encuentros, futuro"><div class="ticker-track" aria-hidden="true"><span>PRODUCCIÓN <i>↗</i> INNOVACIÓN <i>↗</i> ENCUENTROS <i>↗</i> FUTURO <i>↗</i></span><span>PRODUCCIÓN <i>↗</i> INNOVACIÓN <i>↗</i> ENCUENTROS <i>↗</i> FUTURO <i>↗</i></span></div></div>
+
+    <section class="experience-section" id="experiencia" aria-labelledby="experienceTitle">
+      <div class="experience-heading reveal"><p class="section-kicker">01 / LA EXPERIENCIA</p><h2 id="experienceTitle">Hay encuentros<br />que <em>lo cambian todo.</em></h2><p>La producción, las ideas y las personas de Jujuy, en un mismo lugar.</p></div>
+      <div class="image-story" role="region" aria-roledescription="carrusel" aria-label="Fotos de ediciones anteriores" tabindex="0">
+        <div class="story-images">
+          <figure class="story-frame active" data-frame="0"><img src="https://expojuy.camcomexjujuy.com.ar/build/assets/1-BGVsbHVM.jpg" alt="Recorrido por ExpoJuy en una edición anterior" loading="lazy" /></figure>
+          <figure class="story-frame" data-frame="1" aria-hidden="true"><img src="https://expojuy.camcomexjujuy.com.ar/build/assets/3-CBThIh5p.jpg" alt="Expositores y visitantes en una edición anterior de ExpoJuy" loading="lazy" /></figure>
+          <figure class="story-frame" data-frame="2" aria-hidden="true"><img src="https://expojuy.camcomexjujuy.com.ar/build/assets/5-Be2Bh_wv.jpg" alt="Espacios de la muestra de una edición anterior de ExpoJuy" loading="lazy" /></figure>
+          <div class="story-image-footer"><span>ARCHIVO EXPOJUY</span><div><button type="button" id="previousImage" aria-label="Imagen anterior">←</button><button type="button" id="nextImage" aria-label="Imagen siguiente">→</button></div></div>
+        </div>
+        <div class="story-copy">
+          <span class="story-overline">MUCHO MÁS QUE UNA EXPO</span>
+          <div class="story-options" role="group" aria-label="Elegir imagen">
+            <button class="story-option active" type="button" data-story="0" aria-pressed="true"><span>01</span><strong>Descubrí.</strong><i aria-hidden="true">↗</i><small>El potencial de nuestra región.</small></button>
+            <button class="story-option" type="button" data-story="1" aria-pressed="false"><span>02</span><strong>Conectá.</strong><i aria-hidden="true">↗</i><small>Personas, empresas y nuevas ideas.</small></button>
+            <button class="story-option" type="button" data-story="2" aria-pressed="false"><span>03</span><strong>Proyectá.</strong><i aria-hidden="true">↗</i><small>Oportunidades que siguen creciendo.</small></button>
+          </div>
+          <div class="story-progress"><span id="imageCounter" aria-live="polite">01 / 03</span><button id="galleryToggle" type="button" aria-pressed="false">Reproducir imágenes</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="film-section reveal" aria-labelledby="filmTitle">
+      <button class="film-cover" type="button" data-open-film aria-label="Reproducir video de archivo de ExpoJuy">
+        <img src="https://expojuy.camcomexjujuy.com.ar/build/assets/HeroFallback-C3dmciqy.jpeg" alt="" loading="lazy" />
+        <span class="film-topline">EXPOJUY EN MOVIMIENTO <span>ARCHIVO / EDICIONES ANTERIORES</span></span>
+        <span class="film-play" aria-hidden="true">↗</span>
+        <span class="film-caption" id="filmTitle">Estar ahí.<br /><em>Es otra cosa.</em></span>
+        <span class="film-watch">VER VIDEO <span aria-hidden="true">▶</span></span>
+      </button>
+      <p class="media-credit">Fotos y video de archivo: <a href="https://expojuy.camcomexjujuy.com.ar/" target="_blank" rel="noopener noreferrer">sitio oficial de ExpoJuy ↗</a>. No corresponden a la edición 2026.</p>
+    </section>
+
+    <section class="hero planner" id="planificar">
+      <div class="hero-copy">
+        <div class="phase-switcher" role="group" aria-label="Momento del evento">
+          <button class="phase active" data-phase="before" aria-pressed="true">Antes</button>
+          <button class="phase" data-phase="live" aria-pressed="false">En vivo</button>
+          <button class="phase" data-phase="after" aria-pressed="false">Después</button>
+        </div>
+        <p class="eyebrow"><span class="status-dot"></span> <span id="phaseKicker">DESAFÍO DIGITAL · PROTOTIPO</span></p>
+        <h2 class="planner-title"><span id="phaseHeadline">La expo que se</span><br /><em id="phaseAccent">adapta a vos.</em></h2>
+        <p class="hero-lead" id="phaseDescription">Elegí tu objetivo y convertí toda la información del evento en un recorrido personal.</p>
+        <div class="goal-picker" aria-label="Elegí tu objetivo">
+          <button class="goal active" data-goal="proveedores" aria-pressed="true">Encontrar proveedores</button>
+          <button class="goal" data-goal="innovacion" aria-pressed="false">Descubrir innovación</button>
+          <button class="goal" data-goal="agenda" aria-pressed="false">Planificar mi día</button>
+        </div>
+      </div>
+      <aside class="today-card" aria-live="polite">
+        <div class="card-topline"><span>TU RUTA SUGERIDA</span><span id="routeStep">01 — 03</span></div>
+        <div class="route-preview">
+          <div class="route-node active"><span>10:30</span><strong id="routeTitle">Empresas que necesitás conocer</strong><small>Pabellón Innovación</small></div>
+          <div class="route-node"><span>12:00</span><strong>Conferencia recomendada</strong><small>Auditorio Central</small></div>
+          <div class="route-node"><span>14:15</span><strong>Recorrido productivo</strong><small>Zona Exterior</small></div>
+        </div>
+        <a class="primary-action" href="#explorar">Comenzar mi recorrido <span aria-hidden="true">↗</span></a>
+      </aside>
+      <svg class="route-ribbon" viewBox="0 0 1000 260" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-40 210 C120 40, 210 250, 390 110 S700 50, 1040 170" />
+      </svg>
+    </section>
+
+    <section class="explore section" id="explorar">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">01 · EXPLORAR</p>
+          <h2>Encontrá oportunidades,<br />no solamente información.</h2>
+        </div>
+        <p>Buscá empresas por rubro, interés o solución. Los resultados se conectan automáticamente con la agenda y el mapa.</p>
+      </div>
+
+      <div class="explore-toolbar">
+        <label class="search-box" for="exhibitorSearch">
+          <span aria-hidden="true">⌕</span>
+          <input id="exhibitorSearch" type="search" placeholder="Buscar empresa, rubro o solución…" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <div class="sector-filters" role="group" aria-label="Filtrar por sector">
+          <button class="filter active" data-filter="all" aria-pressed="true">Todos</button>
+          <button class="filter" data-filter="tecnologia" aria-pressed="false">Tecnología</button>
+          <button class="filter" data-filter="energia" aria-pressed="false">Energía</button>
+          <button class="filter" data-filter="industria" aria-pressed="false">Industria</button>
+          <button class="filter" data-filter="logistica" aria-pressed="false">Logística</button>
+        </div>
+      </div>
+
+      <div class="results-meta"><span id="resultsCount">4 oportunidades encontradas</span><span class="demo-label">Contenido demostrativo</span></div>
+      <div class="exhibitor-grid" id="exhibitorGrid">
+        <article class="exhibitor-card featured" data-sector="tecnologia" data-search="punatech tecnología datos automatización inteligencia artificial">
+          <div class="card-index">01</div>
+          <div class="sector-icon technology" aria-hidden="true">PT</div>
+          <div class="exhibitor-content"><p>Tecnología · Stand A12</p><h3>PunaTech</h3><span>Automatización y datos para la producción regional.</span></div>
+          <button class="save-button" data-save-id="ex-punatech" data-title="PunaTech" data-meta="Stand A12 · Tecnología" data-kind="Expositor" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Guardar</span></button>
+        </article>
+        <article class="exhibitor-card" data-sector="energia" data-search="andina solar energía renovable paneles sustentabilidad">
+          <div class="card-index">02</div>
+          <div class="sector-icon energy" aria-hidden="true">AS</div>
+          <div class="exhibitor-content"><p>Energía · Stand B08</p><h3>Andina Solar</h3><span>Soluciones renovables para empresas y comunidades.</span></div>
+          <button class="save-button" data-save-id="ex-andina" data-title="Andina Solar" data-meta="Stand B08 · Energía" data-kind="Expositor" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Guardar</span></button>
+        </article>
+        <article class="exhibitor-card" data-sector="industria" data-search="litica circular industria minería reciclaje economía circular">
+          <div class="card-index">03</div>
+          <div class="sector-icon industry" aria-hidden="true">LC</div>
+          <div class="exhibitor-content"><p>Industria · Stand C21</p><h3>Lítica Circular</h3><span>Procesos industriales con foco en economía circular.</span></div>
+          <button class="save-button" data-save-id="ex-litica" data-title="Lítica Circular" data-meta="Stand C21 · Industria" data-kind="Expositor" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Guardar</span></button>
+        </article>
+        <article class="exhibitor-card" data-sector="logistica" data-search="norte logística transporte comercio exterior distribución">
+          <div class="card-index">04</div>
+          <div class="sector-icon logistics" aria-hidden="true">NL</div>
+          <div class="exhibitor-content"><p>Logística · Stand D05</p><h3>Norte Logística</h3><span>Transporte inteligente y conexión con mercados regionales.</span></div>
+          <button class="save-button" data-save-id="ex-norte" data-title="Norte Logística" data-meta="Stand D05 · Logística" data-kind="Expositor" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Guardar</span></button>
+        </article>
+      </div>
+      <div class="empty-state" id="emptyResults" hidden><strong>No encontramos resultados.</strong><span>Probá con otro rubro o una búsqueda más amplia.</span></div>
+    </section>
+
+    <section class="agenda section dark-section" id="agenda">
+      <div class="agenda-layout">
+        <div class="agenda-intro">
+          <p class="section-kicker light">02 · TU AGENDA</p>
+          <h2>Tu día,<br /><span>sin cruces.</span></h2>
+          <p>Armá una agenda personal. El sistema conecta cada actividad con su sala y ubicación dentro del predio.</p>
+          <div class="day-tabs" role="tablist" aria-label="Días del evento">
+            <button class="day active" role="tab" aria-selected="true">Jue 8</button>
+            <button class="day" role="tab" aria-selected="false">Vie 9</button>
+            <button class="day" role="tab" aria-selected="false">Sáb 10</button>
+          </div>
+        </div>
+        <div class="timeline" aria-label="Actividades del jueves 8">
+          <article class="timeline-item now">
+            <time>10:30</time><div class="timeline-dot"></div>
+            <div class="activity-card"><div><p><span class="live-pill">RECOMENDADA</span> Auditorio Central</p><h3>IA aplicada a la producción regional</h3><span>Innovación · 45 min</span></div><button class="save-button compact" data-save-id="ag-ia" data-title="IA aplicada a la producción regional" data-meta="10:30 · Auditorio Central" data-kind="Actividad" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Sumar</span></button></div>
+          </article>
+          <article class="timeline-item">
+            <time>12:00</time><div class="timeline-dot"></div>
+            <div class="activity-card"><div><p>Sala Norte</p><h3>El futuro de la energía en la región</h3><span>Energía · 60 min</span></div><button class="save-button compact" data-save-id="ag-energia" data-title="El futuro de la energía en la región" data-meta="12:00 · Sala Norte" data-kind="Actividad" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Sumar</span></button></div>
+          </article>
+          <article class="timeline-item">
+            <time>14:15</time><div class="timeline-dot"></div>
+            <div class="activity-card"><div><p>Espacio Conecta</p><h3>Ronda de vinculación empresarial</h3><span>Negocios · 90 min</span></div><button class="save-button compact" data-save-id="ag-ronda" data-title="Ronda de vinculación empresarial" data-meta="14:15 · Espacio Conecta" data-kind="Actividad" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Sumar</span></button></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="map-section section" id="mapa">
+      <div class="map-heading">
+        <div><p class="section-kicker">03 · MAPA VIVO</p><h2>Del interés<br />al lugar exacto.</h2></div>
+        <div class="map-actions"><button class="secondary-button" id="listMap" type="button" aria-pressed="false">Ver como lista</button><button class="primary-dark" id="generateRoute" type="button">Generar mi ruta</button></div>
+      </div>
+      <div class="map-shell">
+        <div class="venue-map" id="venueMap" role="group" aria-label="Mapa demostrativo del predio">
+          <div class="map-grid" aria-hidden="true"></div>
+          <div class="map-zone zone-a"><span>PABELLÓN A</span></div>
+          <div class="map-zone zone-b"><span>PABELLÓN B</span></div>
+          <div class="map-zone zone-c"><span>PABELLÓN C</span></div>
+          <div class="map-zone zone-d"><span>ZONA EXTERIOR</span></div>
+          <svg class="map-route" viewBox="0 0 800 520" preserveAspectRatio="none" aria-hidden="true"><path d="M90 455 C170 390, 90 250, 250 230 S480 340, 560 210 S650 75, 725 95" /></svg>
+          <button class="stand-marker active" data-stand="A12" style="--x: 18%; --y: 29%" aria-label="Seleccionar stand A12">A12</button>
+          <button class="stand-marker" data-stand="B08" style="--x: 64%; --y: 20%" aria-label="Seleccionar stand B08">B08</button>
+          <button class="stand-marker" data-stand="C21" style="--x: 47%; --y: 68%" aria-label="Seleccionar stand C21">C21</button>
+          <button class="stand-marker" data-stand="D05" style="--x: 82%; --y: 72%" aria-label="Seleccionar stand D05">D05</button>
+          <div class="you-are-here"><span></span> Estás acá</div>
+          <div class="route-status" id="routeStatus" role="status">Seleccioná tus destinos para generar el recorrido.</div>
+        </div>
+        <aside class="map-detail" aria-live="polite">
+          <p class="detail-overline">DESTINO SELECCIONADO</p>
+          <div class="detail-number" id="selectedStand">A12</div>
+          <h3 id="selectedCompany">PunaTech</h3>
+          <p id="selectedDescription">Automatización y datos para la producción regional.</p>
+          <dl><div><dt>Sector</dt><dd id="selectedSector">Tecnología</dd></div><div><dt>Desde tu ubicación</dt><dd id="selectedDistance">4 min</dd></div></dl>
+          <button class="text-action" id="saveSelectedStand" type="button" aria-pressed="false">Guardar destino <span aria-hidden="true">＋</span></button>
+        </aside>
+        <div class="map-list" id="mapList" hidden>
+          <button data-stand="A12"><strong>A12 · PunaTech</strong><span>Tecnología · 4 min</span></button>
+          <button data-stand="B08"><strong>B08 · Andina Solar</strong><span>Energía · 7 min</span></button>
+          <button data-stand="C21"><strong>C21 · Lítica Circular</strong><span>Industria · 9 min</span></button>
+          <button data-stand="D05"><strong>D05 · Norte Logística</strong><span>Logística · 12 min</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="connection-band" aria-labelledby="connectionTitle">
+      <p class="section-kicker light">UNA EXPERIENCIA CONTINUA</p>
+      <h2 id="connectionTitle">Antes planificás.<br />Durante te orientás.<br /><span>Después conectás.</span></h2>
+      <button class="ask-button" id="openAssistant" type="button"><span class="assistant-orb" aria-hidden="true"></span><span><small>ASISTENTE EXPOJUY</small>Preguntá por empresas, actividades o ubicaciones</span><b aria-hidden="true">↗</b></button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><span class="brand-mark" aria-hidden="true">EJ</span><div><strong>EXPOJUY 2026</strong><p>Innovación · Producción · Conexión</p></div></div>
+    <div class="footer-links"><a href="#inicio">Sobre ExpoJuy</a><a href="#explorar">Expositores</a><a href="#agenda">Agenda</a><a href="#mapa">Mapa</a><a href="#inicio">Noticias</a><a href="#inicio">Sponsors</a><a href="#inicio">Preguntas frecuentes</a><a href="#inicio">Contacto</a></div>
+    <p class="prototype-note">Prototipo conceptual. Empresas, horarios y ubicaciones utilizados únicamente con fines demostrativos.</p>
+  </footer>
+
+  <nav class="mobile-nav" aria-label="Navegación móvil">
+    <a href="#inicio"><span aria-hidden="true">⌂</span>Inicio</a><a href="#explorar"><span aria-hidden="true">⌕</span>Explorar</a><a href="#agenda"><span aria-hidden="true">◷</span>Agenda</a><a href="#mapa"><span aria-hidden="true">◇</span>Mapa</a><button id="openDrawerMobile" type="button"><span aria-hidden="true">◎</span>Mi Expo</button>
+  </nav>
+
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="saved-drawer" id="savedDrawer" aria-labelledby="savedTitle" aria-hidden="true">
+    <div class="drawer-head"><div><p>RECORRIDO PERSONAL</p><h2 id="savedTitle">Mi ExpoJuy</h2></div><button class="close-button" id="closeDrawer" type="button" aria-label="Cerrar Mi ExpoJuy">×</button></div>
+    <div class="drawer-summary"><span><b id="drawerCount">0</b> guardados</span><span>Se guarda en este dispositivo</span></div>
+    <div class="saved-items" id="savedItems"></div>
+    <div class="drawer-empty" id="drawerEmpty"><span aria-hidden="true">＋</span><strong>Tu recorrido empieza acá</strong><p>Guardá expositores y actividades para organizar tu visita.</p></div>
+    <button class="drawer-route" id="drawerRoute" type="button">Ver recorrido en el mapa <span aria-hidden="true">↗</span></button>
+  </aside>
+
+  <dialog class="assistant-dialog" id="assistantDialog">
+    <form method="dialog" class="dialog-close-row"><button aria-label="Cerrar asistente">×</button></form>
+    <div class="assistant-heading"><span class="assistant-orb large" aria-hidden="true"></span><div><p>ASISTENTE EXPOJUY</p><h2>¿Qué necesitás encontrar?</h2></div></div>
+    <div class="assistant-response" id="assistantResponse" aria-live="polite"><span>Respuesta demostrativa</span><p>Puedo ayudarte a descubrir empresas, actividades y ubicaciones del prototipo.</p></div>
+    <div class="question-chips"><button type="button">¿Qué empresas trabajan con energía?</button><button type="button">¿Qué actividad hay a las 10:30?</button><button type="button">¿Dónde está PunaTech?</button></div>
+    <form id="assistantForm" class="assistant-form"><label for="assistantInput" class="sr-only">Escribí tu pregunta</label><input id="assistantInput" placeholder="Escribí tu pregunta…" required /><button type="submit" aria-label="Enviar pregunta">→</button></form>
+    <small class="assistant-disclaimer">Prototipo: responde con un conjunto limitado de datos demostrativos.</small>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog class="film-dialog" id="filmDialog" aria-labelledby="filmDialogTitle">
+    <div class="film-dialog-header"><h2 id="filmDialogTitle">ExpoJuy · Video de archivo</h2><button id="closeFilm" type="button" aria-label="Cerrar video">×</button></div>
+    <video id="fullVideo" controls playsinline preload="none" poster="https://expojuy.camcomexjujuy.com.ar/build/assets/HeroFallback-C3dmciqy.jpeg"></video>
+    <p id="filmError" hidden>No se pudo reproducir el video. <a href="https://expojuy.camcomexjujuy.com.ar/" target="_blank" rel="noopener noreferrer">Verlo en el sitio oficial ↗</a></p>
+    <p>Material audiovisual de ediciones anteriores de ExpoJuy.</p>
+  </dialog>
+
+  <script src="./app.js"></script>
+  <script src="./experience.js"></script>
+</body>
+</html>
