@@ -1,0 +1,59 @@
+/* Official supplied artwork is displayed unchanged, in RGB for screens. */
+@font-face { font-family: Ambit; src: url('./Fuentes_Oficiales/Ambit-Light.otf') format('opentype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: Ambit; src: url('./Fuentes_Oficiales/Ambit-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: Ambit; src: url('./Fuentes_Oficiales/Ambit-SemiBold.otf') format('opentype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: Ambit; src: url('./Fuentes_Oficiales/Ambit-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+:root {
+  /* Exact solid RGB colors sampled from the supplied official artwork. */
+  --brand-violet: #774ff0; --brand-purple: #820cd0; --brand-lilac: #bb8cff; --brand-cyan: #25c0d4; --brand-gray: #4b4b4d;
+  --ink: #18151f; --ink-2: #2c233c; --paper: #f7f7fa;
+  --lime: var(--brand-lilac); --teal: var(--brand-cyan); --orange: var(--brand-cyan);
+}
+body { font-family: Ambit, Arial, sans-serif; font-synthesis: none; }
+button, input, textarea, select { font-family: inherit; }
+.cinema-hero h1 { font-weight: 600; letter-spacing: -.055em; }
+.cinema-hero h1 em { font-weight: 300; }
+.section-heading h2, .agenda-intro h2, .map-heading h2, .connection-band h2 { font-weight: 600; }
+.experience-heading h2, .story-option strong, .ticker-track > span { font-weight: 400; }
+.intro-screen { background: #fff; }
+.intro-logo { width: min(620px, 84vw); height: auto; max-height: 65svh; object-fit: contain; }
+.intro-line { background: var(--brand-violet); margin-top: 12px; }
+.site-header, .site-header.scrolled { background: #fffffffa; color: var(--brand-gray); border-bottom-color: #4b4b4d20; padding-block: 4px; min-height: 88px; }
+.brand { flex-shrink: 0; }
+.official-header-logo { display: block; width: 220px; height: 80px; object-fit: contain; }
+.desktop-nav { color: var(--brand-gray); font-weight: 600; }
+.desktop-nav a:hover { color: var(--brand-purple); }
+.my-expo-button { background: var(--brand-violet); border-color: var(--brand-violet); color: white; font-weight: 600; }
+.count-badge { background: white; color: var(--brand-purple); }
+.icon-button { color: var(--brand-gray); border-color: #4b4b4d45; font-weight: 600; }
+.icon-button:hover, .icon-button[aria-pressed='true'] { background: var(--brand-lilac); color: var(--ink); }
+.round-link { background: var(--brand-cyan); color: #18151f; font-weight: 600; }
+.cinema-eyebrow > span { background: var(--brand-cyan); }
+.ticker { background: var(--brand-lilac); color: var(--ink); }
+.cinema-hero, .experience-section, .film-section, .site-footer { background-color: #18151f; }
+.hero-media::after { background: linear-gradient(90deg, #18151fb5, #18151f35), linear-gradient(0deg, #18151fcd, transparent 60%, #18151f70); }
+.planner { background: #efebf6; }
+.planner .hero-lead, .planner .eyebrow, .planner .phase { color: #514662; }
+.connection-band { background: #2c233c; }
+.assistant-orb { background: radial-gradient(circle at 35% 30%, #fff 0 7%, var(--brand-lilac) 9% 30%, var(--brand-violet) 52%, var(--brand-cyan) 78%); box-shadow: 0 0 30px #774ff035; }
+.footer-brand { background: #fff; border-radius: 8px; width: min(100%, 360px); padding: 8px; }
+.official-footer-logo { display: block; width: 100%; height: auto; }
+.organizer-brand { grid-column: 1/-1; display: flex; align-items: center; gap: 28px; border-top: 1px solid #ffffff25; padding-top: 30px; }
+.organizer-brand p { font-size: .875rem; letter-spacing: .14em; color: #d4ccdf; }
+.organizer-brand img { display: block; width: 150px; height: auto; background: white; padding: 16px; border-radius: 8px; }
+body.high-contrast .site-header { background: #fff; color: #000; }
+body.high-contrast .my-expo-button { background: #000; color: #fff; border-color: #000; }
+body.high-contrast .desktop-nav, body.high-contrast .icon-button { color: #000; }
+body.high-contrast .round-link, body.high-contrast .ticker { background: var(--lime); color: #000; }
+@media (max-width: 600px) {
+  .site-header, .site-header.scrolled { padding-inline: 12px; min-height: 76px; gap: 6px; }
+  .official-header-logo { width: 155px; height: 68px; }
+  .my-expo-button { padding-inline: 9px; }
+  .header-actions { flex-shrink: 0; }
+  .intro-logo { width: 92vw; }
+  .footer-brand { width: min(100%, 300px); }
+}
+@media (max-width: 360px) {
+  .official-header-logo { width: 125px; height: 60px; }
+  .icon-button { width: 32px; height: 32px; }
+}
