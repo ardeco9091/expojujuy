@@ -12,3 +12,6 @@ node_modules/
 __pycache__/
 .DS_Store
 Thumbs.db
+
+# Integration backups and verification artifacts
+tmp/

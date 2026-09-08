@@ -30,7 +30,14 @@ button, input, textarea, select { font-family: inherit; }
 .round-link { background: var(--brand-cyan); color: #18151f; font-weight: 600; }
 .cinema-eyebrow > span { background: var(--brand-cyan); }
 .ticker { background: var(--brand-lilac); color: var(--ink); }
-.cinema-hero, .experience-section, .film-section, .site-footer { background-color: #18151f; }
+.cinema-hero, .experience-section, .manifesto-section, .site-footer { background-color: #18151f; }
+.manifesto-bg { background: radial-gradient(80% 120% at 50% 0%, #774ff055, transparent 60%), radial-gradient(60% 80% at 85% 100%, #25c0d433, transparent 65%); }
+.manifesto-stats { border-top-color: #ffffff22; }
+.manifesto-stats dt { color: var(--brand-lilac); }
+.hero-network .net-lines line { stroke: var(--brand-lilac); }
+.hero-network .net-nodes circle { fill: var(--brand-cyan); }
+.hero-network .net-nodes circle.pulse { fill: var(--brand-lilac); }
+.hero-peaks { background-color: #241a3d; }
 .hero-media::after { background: linear-gradient(90deg, #18151fb5, #18151f35), linear-gradient(0deg, #18151fcd, transparent 60%, #18151f70); }
 .planner { background: #efebf6; }
 .planner .hero-lead, .planner .eyebrow, .planner .phase { color: #514662; }

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="gProyecta" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#122a3a" />
+      <stop offset=".5" stop-color="#0f6f83" />
+      <stop offset="1" stop-color="#25c0d4" />
+    </linearGradient>
+  </defs>
+  <rect width="560" height="500" fill="url(#gProyecta)" />
+  <g fill="none" stroke="#f7f7fa" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M60 380 L170 280 L250 340 L360 190 L500 90" opacity=".95" />
+  </g>
+  <path d="M440 90 L500 90 L500 150" fill="none" stroke="#bb8cff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <g fill="#f7f7fa">
+    <circle cx="60" cy="380" r="6" />
+    <circle cx="170" cy="280" r="6" />
+    <circle cx="250" cy="340" r="6" />
+    <circle cx="360" cy="190" r="6" />
+    <circle cx="500" cy="90" r="7" fill="#bb8cff" />
+  </g>
+  <g opacity=".18" stroke="#f7f7fa">
+    <path d="M0 420 L120 340 L230 400 L340 260 L560 130" stroke-width="2" fill="none" />
+  </g>
+  <rect x="0" y="400" width="560" height="100" fill="#18151f" opacity=".55" />
+</svg>

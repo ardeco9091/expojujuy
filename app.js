@@ -237,16 +237,87 @@ document.addEventListener("keydown", (event) => {
     setTimeout(() => document.querySelector("#exhibitorSearch").focus(), 250);
   }
   if (event.key === "Escape") closeDrawer();
+  if (event.key === "Tab" && drawer.classList.contains("open")) {
+    const controls = [...drawer.querySelectorAll('button, a[href], input, select, textarea, [tabindex="0"]')].filter(el => !el.disabled && el.getClientRects().length);
+    const first = controls[0], last = controls[controls.length - 1];
+    if (event.shiftKey && (document.activeElement === first || !drawer.contains(document.activeElement))) {
+      event.preventDefault(); last?.focus();
+    } else if (!event.shiftKey && (document.activeElement === last || !drawer.contains(document.activeElement))) {
+      event.preventDefault(); first?.focus();
+    }
+  }
 });
+
+const agendaData = {
+  jue: {
+    label: "jueves 8",
+    items: [
+      { time: "10:30", location: "Auditorio Central", title: "IA aplicada a la producción regional", meta: "Innovación · 45 min", id: "ag-ia", recommended: true },
+      { time: "12:00", location: "Sala Norte", title: "El futuro de la energía en la región", meta: "Energía · 60 min", id: "ag-energia" },
+      { time: "14:15", location: "Espacio Conecta", title: "Ronda de vinculación empresarial", meta: "Negocios · 90 min", id: "ag-ronda" }
+    ]
+  },
+  vie: {
+    label: "viernes 9",
+    items: [
+      { time: "09:30", location: "Auditorio Central", title: "Financiamiento para pymes exportadoras", meta: "Negocios · 45 min", id: "ag-vie-financiamiento", recommended: true },
+      { time: "11:15", location: "Pabellón B", title: "Litio y minería sustentable: el mapa regional", meta: "Minería · 50 min", id: "ag-vie-mineria" },
+      { time: "16:00", location: "Espacio Conecta", title: "Rueda de negocios internacional", meta: "Negocios · 120 min", id: "ag-vie-rueda" }
+    ]
+  },
+  sab: {
+    label: "sábado 10",
+    items: [
+      { time: "10:00", location: "Sala Norte", title: "Economía del conocimiento: empleos del futuro", meta: "Economía del Conocimiento · 45 min", id: "ag-sab-economia", recommended: true },
+      { time: "13:00", location: "Zona Exterior", title: "Demostración de logística y transporte inteligente", meta: "Logística · 40 min", id: "ag-sab-logistica" },
+      { time: "17:30", location: "Auditorio Central", title: "Cierre y entrega de reconocimientos ExpoJuy 2026", meta: "Institucional · 30 min", id: "ag-sab-cierre" }
+    ]
+  }
+};
+
+function renderAgendaDay(dayKey) {
+  const day = agendaData[dayKey];
+  if (!day) return;
+  document.querySelector("#timeline").setAttribute("aria-label", `Actividades del ${day.label}`);
+  day.items.forEach((activity, index) => {
+    const article = document.querySelector(`#timelineItem${index}`);
+    if (!article) return;
+    article.classList.toggle("now", Boolean(activity.recommended));
+    article.querySelector("time").textContent = activity.time;
+    const locationP = article.querySelector(".activity-card p");
+    locationP.replaceChildren();
+    if (activity.recommended) {
+      const pill = document.createElement("span");
+      pill.className = "live-pill";
+      pill.textContent = "RECOMENDADA";
+      locationP.append(pill, " ");
+    }
+    const locationSpan = document.createElement("span");
+    locationSpan.className = "timeline-location";
+    locationSpan.textContent = activity.location;
+    locationP.append(locationSpan);
+    article.querySelector("h3").textContent = activity.title;
+    article.querySelector(".timeline-meta").textContent = activity.meta;
+    const button = article.querySelector(".save-button");
+    button.dataset.saveId = activity.id;
+    button.dataset.title = activity.title;
+    button.dataset.meta = `${day.label} · ${activity.time} · ${activity.location}`;
+    button.dataset.kind = "Actividad";
+  });
+  renderSaved();
+}
 
 document.querySelectorAll(".day").forEach((button) => {
   button.addEventListener("click", () => {
-    document.querySelectorAll(".day").forEach((item) => {
-      const active = item === button;
-      item.classList.toggle("active", active);
-      item.setAttribute("aria-selected", String(active));
+    transition(() => {
+      document.querySelectorAll(".day").forEach((item) => {
+        const active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-selected", String(active));
+      });
+      renderAgendaDay(button.dataset.day);
     });
-    showToast(`Agenda demostrativa del ${button.textContent}`);
+    showToast(`Mostrando la agenda del ${agendaData[button.dataset.day].label}`);
   });
 });
 
@@ -279,8 +350,8 @@ document.querySelector("#generateRoute").addEventListener("click", () => {
   document.querySelector(".map-route").classList.add("active");
   const destinations = saved.filter((item) => item.kind === "Expositor").length || 1;
   const destinationLabel = destinations === 1 ? "destino" : "destinos";
-  document.querySelector("#routeStatus").textContent = `Ruta optimizada · ${destinations} ${destinationLabel} · recorrido demostrativo`;
-  showToast("Tu ruta fue generada");
+  document.querySelector("#routeStatus").textContent = `Ruta ilustrativa · ${destinations} ${destinationLabel} · recorrido demostrativo`;
+  showToast("Mostrando un recorrido demostrativo");
 });
 
 function toggleMapView(forceList) {
@@ -304,6 +375,7 @@ function openDrawer() {
   clearTimeout(drawerBackdropTimer);
   drawerReturnFocus = document.activeElement;
   drawerBackdrop.hidden = false;
+  drawer.inert = false;
   drawer.setAttribute("aria-hidden", "false");
   requestAnimationFrame(() => drawer.classList.add("open"));
   document.body.style.overflow = "hidden";
@@ -312,6 +384,7 @@ function openDrawer() {
 function closeDrawer() {
   if (!drawer.classList.contains("open")) return;
   drawer.classList.remove("open");
+  drawer.inert = true;
   drawer.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
   drawerBackdropTimer = setTimeout(() => { drawerBackdrop.hidden = true; }, 350);
@@ -361,10 +434,33 @@ document.querySelectorAll(".question-chips button").forEach((button) => {
   button.addEventListener("click", () => submitAssistant(button.textContent));
 });
 
+const textSizeSteps = [100, 112, 125];
+let textSizeIndex = Number(localStorage.getItem("expojuy-text-size") || 0);
+if (!Number.isInteger(textSizeIndex) || textSizeIndex < 0 || textSizeIndex >= textSizeSteps.length) textSizeIndex = 0;
+
+function applyTextSize() {
+  document.documentElement.style.setProperty("--text-scale", `${textSizeSteps[textSizeIndex]}%`);
+  document.querySelector("#textSizeDown").disabled = textSizeIndex === 0;
+  document.querySelector("#textSizeUp").disabled = textSizeIndex === textSizeSteps.length - 1;
+  localStorage.setItem("expojuy-text-size", String(textSizeIndex));
+}
+document.querySelector("#textSizeUp").addEventListener("click", () => {
+  if (textSizeIndex < textSizeSteps.length - 1) textSizeIndex += 1;
+  applyTextSize();
+  showToast(`Tamaño de texto: ${textSizeSteps[textSizeIndex]}%`);
+});
+document.querySelector("#textSizeDown").addEventListener("click", () => {
+  if (textSizeIndex > 0) textSizeIndex -= 1;
+  applyTextSize();
+  showToast(`Tamaño de texto: ${textSizeSteps[textSizeIndex]}%`);
+});
+applyTextSize();
+
 const highContrastEnabled = localStorage.getItem("expojuy-high-contrast") === "true";
 document.body.classList.toggle("high-contrast", highContrastEnabled);
 document.querySelector("#accessToggle").setAttribute("aria-pressed", String(highContrastEnabled));
 document.querySelector("#accessToggle").title = highContrastEnabled ? "Desactivar alto contraste" : "Activar alto contraste";
 
-renderSaved();
+renderAgendaDay("jue");
+filterExhibitors();
 selectStand(selectedStand);

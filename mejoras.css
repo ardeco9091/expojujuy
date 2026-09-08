@@ -1,0 +1,127 @@
+/* ============================================================
+   MEJORAS — Desafío Digital ExpoJuy 2026
+   Noticias, Entradas/Acreditación, FAQ, mapa mejorado y
+   asistente flotante. Reutiliza las variables de marca ya
+   definidas en brand.css (--ink, --lime, --teal, --brand-*).
+   ============================================================ */
+
+/* --- Botón "Entradas" en el header --- */
+.tickets-button { display: inline-flex; align-items: center; gap: 7px; border: 1.5px solid var(--brand-violet); background: transparent; color: var(--brand-violet); border-radius: 999px; padding: 10px 16px; cursor: pointer; font-weight: 700; font-size: .88rem; white-space: nowrap; transition: background .2s, color .2s; }
+.tickets-button:hover { background: var(--brand-violet); color: #fff; }
+.tickets-button .ticket-icon { font-size: 1.05rem; line-height: 1; }
+body.high-contrast .tickets-button { border-color: #000; color: #000; }
+body.high-contrast .tickets-button:hover { background: #000; color: #fff; }
+
+/* --- Panel de Novedades / Noticias --- */
+.news-section { background: #f4effc; }
+.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.news-card { background: #fff; border: 1px solid #ded4f2; border-radius: var(--radius-md); padding: 28px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; transition: transform .25s ease, box-shadow .25s ease; }
+.news-card:hover { transform: translateY(-4px); box-shadow: 0 20px 45px rgba(24,21,31,.1); }
+.news-tag { display: inline-block; border-radius: 999px; padding: 6px 11px; font-size: .68rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; color: #fff; margin-bottom: 14px; }
+.news-tag.tag-violet { background: var(--brand-violet); }
+.news-tag.tag-purple { background: var(--brand-purple); }
+.news-tag.tag-cyan { background: var(--brand-cyan); color: #0b2c31; }
+.news-card time { color: #7c7189; font-size: .74rem; font-weight: 750; letter-spacing: .04em; }
+.news-card h3 { font-size: 1.28rem; letter-spacing: -.03em; line-height: 1.25; margin: 10px 0 8px; }
+.news-card p { color: #564d64; line-height: 1.55; font-size: .92rem; margin: 0 0 18px; }
+.text-action-light { margin-top: auto; border: 0; background: transparent; color: var(--brand-violet); font-weight: 750; cursor: pointer; padding: 0; font-size: .9rem; display: inline-flex; align-items: center; gap: 6px; }
+.text-action-light:hover { color: var(--brand-purple); text-decoration: underline; text-underline-offset: 3px; }
+body.high-contrast .news-section { background: #fff; }
+body.high-contrast .news-card { border-color: #000; }
+body.high-contrast .news-tag { background: #000 !important; color: #fff !important; }
+body.high-contrast .text-action-light { color: #000; }
+
+/* --- Mapa: marcadores de auditorios/actividades + leyenda --- */
+.venue-marker { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%); border: 2px solid var(--ink); background: #fff; color: var(--ink); border-radius: 10px; width: 38px; height: 38px; display: grid; place-items: center; font-size: 1.05rem; cursor: pointer; z-index: 4; box-shadow: 0 8px 20px rgba(7,26,36,.18); transition: transform .2s ease, background .2s ease; }
+.venue-marker:hover, .venue-marker:focus-visible { background: var(--ink); color: #fff; transform: translate(-50%, -50%) scale(1.1); }
+.map-legend { position: absolute; top: 16px; right: 16px; z-index: 5; display: flex; flex-direction: column; gap: 6px; background: #ffffffe6; border-radius: 12px; padding: 10px 13px; font-size: .68rem; font-weight: 700; color: #33474d; box-shadow: 0 8px 20px rgba(7,26,36,.1); }
+.map-legend span { display: flex; align-items: center; gap: 7px; }
+.legend-dot { width: 12px; height: 12px; border-radius: 4px; display: inline-block; flex-shrink: 0; }
+.legend-dot.stand { border-radius: 50%; background: var(--ink); }
+.legend-dot.venue { background: #fff; border: 2px solid var(--ink); }
+body.high-contrast .venue-marker { border-color: #000; background: #fff; color: #000; }
+body.high-contrast .map-legend { background: #fff; border: 1px solid #000; }
+
+/* --- Filtros y expositores nuevos --- */
+.sector-icon.agriculture { background: var(--brand-cyan); }
+.sector-icon.mining { background: var(--brand-purple); color: #fff; }
+
+/* --- Preguntas frecuentes (FAQ) --- */
+.faq-section { background: linear-gradient(165deg, #f4effc 0%, #eef8fb 60%, #f7f7fa 100%); }
+.faq-section .section-heading .section-kicker { display: inline-flex; align-items: center; background: var(--brand-violet); color: #fff; padding: 6px 14px; border-radius: 999px; }
+.faq-section .section-heading p { color: #564d64; }
+.faq-list { max-width: 860px; counter-reset: faq-counter; }
+.faq-item { counter-increment: faq-counter; background: #fff; border: 1px solid #e3daf5; border-radius: var(--radius-md); padding: 4px 26px; margin-bottom: 14px; box-shadow: 0 14px 34px rgba(41,26,71,.05); transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+.faq-item:last-child { margin-bottom: 0; }
+.faq-item:hover { border-color: var(--brand-violet); box-shadow: 0 18px 40px rgba(41,26,71,.1); transform: translateY(-2px); }
+.faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 18px; padding: 22px 4px; font-weight: 700; font-size: 1.06rem; letter-spacing: -.01em; color: var(--ink); }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::before { content: counter(faq-counter, decimal-leading-zero); flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: .7rem; font-weight: 850; color: #fff; background: var(--brand-violet); }
+.faq-item:nth-of-type(3n+2) summary::before { background: var(--brand-purple); }
+.faq-item:nth-of-type(3n) summary::before { background: var(--brand-cyan); color: #0b2c31; }
+.faq-item summary::after { content: '+'; flex-shrink: 0; margin-left: auto; font-size: 1.5rem; font-weight: 400; color: var(--brand-violet); transition: transform .25s ease; }
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p { margin: 0 0 24px; padding-left: 52px; padding-right: 20px; color: #4d5f65; line-height: 1.6; font-size: .96rem; }
+body.high-contrast .faq-section { background: #fff; }
+body.high-contrast .faq-section .section-heading .section-kicker { background: #000; color: #fff; }
+body.high-contrast .faq-item { border-color: #000; box-shadow: none; }
+body.high-contrast .faq-item summary::before { background: #000; }
+body.high-contrast .faq-item summary::after { color: #000; }
+
+/* --- Modal de Entradas / Acreditación --- */
+.tickets-dialog { width: min(640px, calc(100% - 30px)); max-height: 90dvh; overflow-y: auto; border: 0; border-radius: 28px; padding: 30px; color: var(--ink); box-shadow: 0 40px 100px rgba(0,0,0,.35); }
+.tickets-dialog::backdrop { background: rgba(2,12,17,.74); backdrop-filter: blur(5px); }
+.tickets-dialog .section-kicker { margin-bottom: 10px; }
+.tickets-dialog h2 { font-size: clamp(1.5rem, 3.6vw, 2.1rem); letter-spacing: -.04em; margin: 0 0 10px; }
+.tickets-lead { color: #5b6d73; line-height: 1.55; margin: 0 0 24px; }
+.ticket-options { display: grid; gap: 12px; margin-bottom: 22px; }
+.ticket-option { position: relative; display: grid; grid-template-columns: 22px 1fr; gap: 14px; border: 1.5px solid #d3dbd9; border-radius: 18px; padding: 16px 18px; cursor: pointer; transition: border-color .2s, background .2s; }
+.ticket-option:hover { border-color: var(--brand-violet); }
+.ticket-option.active { border-color: var(--brand-violet); background: #f7f3ff; }
+.ticket-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.ticket-option-index { font-size: .72rem; font-weight: 850; color: #8b7fa0; padding-top: 3px; }
+.ticket-option.active .ticket-option-index { color: var(--brand-violet); }
+.ticket-option-body strong { display: block; font-size: 1.05rem; letter-spacing: -.02em; }
+.ticket-option-body small { display: block; color: #6a5f80; font-size: .74rem; font-weight: 750; letter-spacing: .03em; margin: 3px 0 7px; }
+.ticket-option-body p { margin: 0; color: #55606a; font-size: .87rem; line-height: 1.45; }
+.ticket-form { display: grid; gap: 16px; }
+.ticket-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ticket-fields label { display: grid; gap: 6px; font-size: .78rem; font-weight: 750; color: #56656b; }
+.ticket-fields input { border: 1.5px solid #cfd9d6; border-radius: 12px; padding: 12px 13px; font-size: .95rem; color: var(--ink); background: #fff; }
+.ticket-fields input:focus-visible { border-color: var(--brand-violet); }
+.ticket-confirm { width: 100%; justify-content: center; display: flex; align-items: center; gap: 10px; border-radius: 14px; padding: 15px 18px; font-size: .98rem; cursor: pointer; }
+.tickets-dialog .assistant-disclaimer { display: block; margin-top: 16px; color: #7a8b90; font-size: .68rem; }
+.ticket-badge { background: linear-gradient(145deg, var(--brand-violet), var(--brand-purple)); color: #fff; border-radius: 22px; padding: 28px; text-align: center; }
+.ticket-badge-head { display: flex; justify-content: space-between; align-items: center; font-size: .68rem; letter-spacing: .1em; font-weight: 850; margin-bottom: 22px; }
+.ticket-qr { width: 128px; height: 128px; margin: 0 auto 20px; border-radius: 14px; background: repeating-conic-gradient(#fff 0% 25%, transparent 0% 50%) 0 0 / 16px 16px, #fff; padding: 10px; background-color: #fff; }
+.ticket-badge-name { font-size: 1.3rem; font-weight: 750; margin: 0 0 4px; }
+.ticket-badge-code { font-size: .78rem; opacity: .85; margin: 0; }
+.tickets-view + p { color: #556169; line-height: 1.6; margin: 20px 0; text-align: center; }
+.tickets-actions { display: flex; gap: 12px; margin-top: 8px; }
+.tickets-actions button { flex: 1; border-radius: 14px; padding: 13px; cursor: pointer; font-weight: 750; }
+
+/* --- Widget flotante del asistente (JujuyBot) --- */
+.assistant-fab { position: fixed; right: 24px; bottom: 28px; z-index: 60; display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.2); background: var(--ink); color: #fff; border-radius: 999px; padding: 10px 18px 10px 10px; cursor: pointer; box-shadow: 0 18px 45px rgba(0,0,0,.3); font-weight: 750; font-size: .88rem; transition: transform .2s ease; }
+.assistant-fab:hover { transform: translateY(-3px); }
+.assistant-fab .assistant-orb { width: 30px; flex-shrink: 0; }
+body.high-contrast .assistant-fab { background: #000; border-color: #000; }
+
+@media (max-width: 850px) {
+  .news-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .tickets-label { display: none; }
+  .tickets-button { padding: 10px; }
+  .ticket-fields { grid-template-columns: 1fr; }
+  .assistant-fab { right: 14px; bottom: 92px; padding: 9px; }
+  .assistant-fab-label { display: none; }
+}
+@media (max-width: 520px) {
+  .mobile-nav { grid-template-columns: repeat(6, 1fr); }
+  .tickets-dialog { padding: 22px; border-radius: 22px; }
+  .map-legend { top: auto; bottom: 44px; right: 10px; padding: 8px 10px; font-size: .62rem; }
+}
+
+.exhibitor-art { object-fit: cover; }
+.ticket-option:focus-within { outline: 3px solid var(--brand-purple); outline-offset: 3px; }
+@media (min-width: 901px) { .cinema-foot { padding-right: 180px; } }

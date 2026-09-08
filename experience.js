@@ -18,11 +18,17 @@
   let previousFocus;
 
   function syncHero() {
-    if (motion && heroVisible && !document.hidden && !dialog.open) {
+    if (!hero) return;
+    if (motion && heroVisible && !document.hidden && !dialog?.open) {
       if (!hero.getAttribute('src')) hero.src = hero.dataset.src;
       hero.play().catch(() => { hero.classList.remove('ready'); });
     } else hero.pause();
   }
+  if (hero) {
+    hero.addEventListener('playing', () => hero.classList.add('ready'));
+    hero.addEventListener('error', () => hero.classList.remove('ready'));
+  }
+
   function updateMotion() {
     document.body.classList.toggle('motion-enabled', motion);
     document.body.classList.toggle('motion-paused', !motion);
@@ -35,8 +41,6 @@
     syncHero();
     scheduleGallery();
   }
-  hero.addEventListener('playing', () => hero.classList.add('ready'));
-  hero.addEventListener('error', () => hero.classList.remove('ready'));
   motionButton.addEventListener('click', () => {
     motion = !motion;
     if (!motion) setGalleryPlaying(false);
@@ -53,7 +57,7 @@
   }
   function scheduleGallery() {
     clearTimeout(timer);
-    if (galleryPlaying && galleryVisible && !document.hidden && !dialog.open && !story.matches(':hover') && !story.contains(document.activeElement)) {
+    if (galleryPlaying && galleryVisible && !document.hidden && !dialog?.open && !story.matches(':hover') && !story.contains(document.activeElement)) {
       timer = setTimeout(() => { showImage(active + 1); }, 5500);
     }
   }
@@ -65,7 +69,7 @@
     try { await image.decode(); } catch {
       if (request === imageRequest) {
         setGalleryPlaying(false);
-        showToast('No se pudo cargar la imagen. Probá nuevamente.');
+        if (typeof showToast === 'function') showToast('No se pudo cargar la imagen. Probá nuevamente.');
       }
       return;
     }
@@ -108,27 +112,30 @@
     touchStart = null;
   }, { passive: true });
 
-  document.querySelectorAll('[data-open-film]').forEach(button => button.addEventListener('click', () => {
-    previousFocus = button;
-    dialog.showModal();
-    document.body.classList.add('film-open');
-    hero.pause();
-    clearTimeout(timer);
-    if (!film.getAttribute('src')) film.src = hero.dataset.src;
-    film.play().catch(() => { /* Native controls remain available if autoplay is blocked. */ });
-    document.querySelector('#closeFilm').focus();
-  }));
-  document.querySelector('#closeFilm').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
-  dialog.addEventListener('close', () => {
-    film.pause();
-    document.body.classList.remove('film-open');
-    previousFocus?.focus();
-    syncHero();
-    scheduleGallery();
-  });
-  film.addEventListener('error', () => { document.querySelector('#filmError').hidden = false; });
-  film.addEventListener('loadeddata', () => { document.querySelector('#filmError').hidden = true; });
+  if (dialog && film) {
+    document.querySelectorAll('[data-open-film]').forEach(button => button.addEventListener('click', () => {
+      previousFocus = button;
+      dialog.showModal();
+      document.body.classList.add('film-open');
+      hero?.pause();
+      clearTimeout(timer);
+      const source = hero?.dataset.src || film.getAttribute('poster');
+      if (!film.getAttribute('src') && source) film.src = source;
+      film.play().catch(() => { /* Native controls remain available if autoplay is blocked. */ });
+      document.querySelector('#closeFilm').focus();
+    }));
+    document.querySelector('#closeFilm').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => {
+      film.pause();
+      document.body.classList.remove('film-open');
+      previousFocus?.focus();
+      syncHero();
+      scheduleGallery();
+    });
+    film.addEventListener('error', () => { const err = document.querySelector('#filmError'); if (err) err.hidden = false; });
+    film.addEventListener('loadeddata', () => { const err = document.querySelector('#filmError'); if (err) err.hidden = true; });
+  }
 
   const header = document.querySelector('.site-header');
   const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 40);
@@ -146,7 +153,8 @@
       syncHero();
       scheduleGallery();
     }, { threshold: .15 });
-    mediaObserver.observe(document.querySelector('#inicio'));
+    const inicio = document.querySelector('#inicio');
+    if (inicio) mediaObserver.observe(inicio);
     mediaObserver.observe(story);
     const reveals = new IntersectionObserver(entries => entries.forEach(entry => {
       if (entry.isIntersecting) { entry.target.classList.remove('waiting'); reveals.unobserve(entry.target); }
@@ -154,7 +162,7 @@
     document.querySelectorAll('.reveal').forEach(section => { section.classList.add('waiting'); reveals.observe(section); });
   } else galleryVisible = true;
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) film.pause();
+    if (document.hidden) film?.pause();
     syncHero(); scheduleGallery();
   });
   reduced.addEventListener('change', () => {

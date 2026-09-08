@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Prototipo conceptual de ExpoJuy 2026: agenda, expositores y recorrido personalizado." />
+  <meta name="description" content="Prototipo conceptual de ExpoJuy 2026: identidad, expositores, agenda, mapa, sponsors y contacto en un recorrido digital personalizado." />
   <meta name="theme-color" content="#774ff0" />
   <title>ExpoJuy Conecta 2026</title>
   <meta property="og:title" content="ExpoJuy Conecta 2026" />
-  <meta property="og:description" content="Prototipo conceptual de ExpoJuy 2026: agenda, expositores y recorrido personalizado." />
-<meta property="og:image" content="https://expojuy.camcomexjujuy.com.ar/build/assets/HeroFallback-C3dmciqy.jpeg" />  <meta property="og:url" content="https://expo-jujuy.netlify.app/" />
+  <meta property="og:description" content="Prototipo conceptual de ExpoJuy 2026: identidad, expositores, agenda, mapa, sponsors y contacto en un recorrido digital personalizado." />
+  <meta property="og:image" content="https://expo-jujuy.netlify.app/EXPOJUY_Logo2026/RGB/expojuy26_horizontal.png" />
+  <meta property="og:url" content="https://expo-jujuy.netlify.app/" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="./styles.css" />
   <link rel="stylesheet" href="./experience.css" />
   <link rel="stylesheet" href="./brand.css" />
+  <link rel="stylesheet" href="./mejoras.css" />
+  <link rel="stylesheet" href="./ampliacion.css" />
   <link rel="preload" href="./Fuentes_Oficiales/Ambit-Regular.otf" as="font" type="font/otf" crossorigin />
   <link rel="preload" href="./Fuentes_Oficiales/Ambit-SemiBold.otf" as="font" type="font/otf" crossorigin />
   <link rel="icon" type="image/png" href="./EXPOJUY_Logo2026/RGB/expojuy26_isologotipo.png" />
@@ -25,10 +28,17 @@
       <img class="official-header-logo" src="./EXPOJUY_Logo2026/RGB/expojuy26_horizontal.png" alt="ExpoJuy: conectando países, creando oportunidades" width="2614" height="1125" />
     </a>
     <nav class="desktop-nav" aria-label="Navegación principal">
-      <a href="#experiencia">La experiencia</a><a href="#explorar">Expositores</a><a href="#agenda">Agenda</a><a href="#mapa">Mapa</a>
+      <a href="#sobre">Sobre</a><a href="#explorar">Expositores</a><a href="#agenda">Agenda</a><a href="#noticias">Noticias</a><a href="#mapa">Mapa</a><a href="#sponsors">Sponsors</a><a href="#contacto">Contacto</a>
     </nav>
     <div class="header-actions">
-      <button class="icon-button" id="accessToggle" type="button" aria-pressed="false" title="Activar alto contraste">Aa</button>
+      <div class="text-size-controls" role="group" aria-label="Tamaño de texto">
+        <button class="icon-button" id="textSizeDown" type="button" aria-label="Reducir tamaño de texto">A-</button>
+        <button class="icon-button" id="textSizeUp" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+      </div>
+      <button class="icon-button" id="accessToggle" type="button" aria-pressed="false" title="Activar alto contraste">◐</button>
+      <button class="tickets-button" type="button" data-open-tickets>
+        <span class="ticket-icon" aria-hidden="true">▤</span><span class="tickets-label">Entradas</span>
+      </button>
       <button class="my-expo-button" id="openDrawer" type="button">
         Mi ExpoJuy <span class="count-badge" id="savedCount">0</span>
       </button>
@@ -40,6 +50,24 @@
       <div class="hero-media" aria-hidden="true">
         <img class="hero-poster" src="https://expojuy.camcomexjujuy.com.ar/build/assets/HeroFallback-C3dmciqy.jpeg" alt="" fetchpriority="high" />
         <video id="heroVideo" muted loop playsinline preload="none" tabindex="-1" data-src="https://expojuy.camcomexjujuy.com.ar/build/assets/video-DvvGNoCh.mp4"></video>
+        <div class="hero-scene">
+          <div class="hero-peaks"></div>
+          <svg class="hero-network" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMax slice">
+            <g class="net-lines">
+              <line x1="120" y1="180" x2="360" y2="120" /><line x1="360" y1="120" x2="620" y2="230" />
+              <line x1="620" y1="230" x2="880" y2="110" /><line x1="880" y1="110" x2="1080" y2="260" />
+              <line x1="360" y1="120" x2="500" y2="330" /><line x1="620" y1="230" x2="760" y2="400" />
+              <line x1="500" y1="330" x2="760" y2="400" /><line x1="120" y1="180" x2="500" y2="330" />
+              <line x1="760" y1="400" x2="980" y2="450" /><line x1="880" y1="110" x2="1080" y2="260" />
+              <line x1="200" y1="420" x2="500" y2="330" /><line x1="980" y1="450" x2="1080" y2="260" />
+            </g>
+            <g class="net-nodes">
+              <circle cx="120" cy="180" r="4" /><circle cx="360" cy="120" r="5" /><circle cx="620" cy="230" r="6" class="pulse" />
+              <circle cx="880" cy="110" r="4" /><circle cx="1080" cy="260" r="5" /><circle cx="500" cy="330" r="6" class="pulse" />
+              <circle cx="760" cy="400" r="4" /><circle cx="200" cy="420" r="4" /><circle cx="980" cy="450" r="5" />
+            </g>
+          </svg>
+        </div>
       </div>
       <div class="cinema-copy">
         <p class="cinema-eyebrow"><span></span> JUJUY, ARGENTINA · EXPOJUY CONECTA 2026</p>
@@ -48,12 +76,40 @@
           <a class="round-link" href="#planificar"><span>Viví tu<br />ExpoJuy</span><b aria-hidden="true">↗</b></a>
           <p>Ideas que se encuentran.<br />Conexiones que van más allá.</p>
           <button class="film-link" type="button" data-open-film><span class="play-glyph" aria-hidden="true">▶</span> Mirá la experiencia <span aria-hidden="true">↗</span></button>
+          <button class="film-link" type="button" data-open-assistant><span class="play-glyph" aria-hidden="true">✦</span> Preguntale a JujuyBot <span aria-hidden="true">↗</span></button>
         </div>
       </div>
       <div class="cinema-foot"><a href="#experiencia">DESLIZÁ PARA DESCUBRIR <span aria-hidden="true">↓</span></a><span>IMÁGENES DE EDICIONES ANTERIORES</span><button id="motionToggle" type="button" aria-pressed="false" aria-label="Activar movimiento">▶ <span>Activar movimiento</span></button></div>
     </section>
 
     <div class="ticker" aria-label="Producción, innovación, encuentros, futuro"><div class="ticker-track" aria-hidden="true"><span>PRODUCCIÓN <i>↗</i> INNOVACIÓN <i>↗</i> ENCUENTROS <i>↗</i> FUTURO <i>↗</i></span><span>PRODUCCIÓN <i>↗</i> INNOVACIÓN <i>↗</i> ENCUENTROS <i>↗</i> FUTURO <i>↗</i></span></div></div>
+
+    <section class="about-section section reveal" id="sobre" aria-labelledby="aboutTitle">
+      <div class="section-heading">
+        <div><p class="section-kicker">00 / SOBRE EXPOJUY 2026</p><h2 id="aboutTitle">El evento productivo<br />que <em>conecta el Norte.</em></h2></div>
+        <p>La propuesta representa tres jornadas de encuentro entre empresas, organismos públicos e instituciones educativas de Jujuy y la región, para mostrar producción, tecnología y oportunidades de negocio del Norte argentino.</p>
+      </div>
+      <div class="about-grid">
+        <dl class="about-stats">
+          <div><dt>3 días</dt><dd>Jornadas de muestra; fechas y sede a confirmar</dd></div>
+          <div><dt>6 sectores</dt><dd>Tecnología, energía, industria, logística, agroindustria y minería</dd></div>
+          <div><dt>+150</dt><dd>Expositores esperados (cifra demostrativa)</dd></div>
+          <div><dt>1 propósito</dt><dd>Conectar producción, talento y desarrollo regional</dd></div>
+        </dl>
+        <div class="about-values">
+          <p class="about-values-label">VALORES DE EXPOJUY 2026</p>
+          <ul class="values-grid">
+            <li><span class="value-index">01</span><strong>Innovación</strong><small>Ideas y soluciones que empujan al sector productivo hacia adelante.</small></li>
+            <li><span class="value-index">02</span><strong>Tecnología</strong><small>Herramientas digitales aplicadas a procesos reales de la región.</small></li>
+            <li><span class="value-index">03</span><strong>Producción</strong><small>La base económica del Norte argentino, en primer plano.</small></li>
+            <li><span class="value-index">04</span><strong>Desarrollo</strong><small>Crecimiento sostenido para empresas, instituciones y personas.</small></li>
+            <li><span class="value-index">05</span><strong>Vinculación empresarial</strong><small>Rondas de negocio que generan contactos concretos.</small></li>
+            <li><span class="value-index">06</span><strong>Economía del Conocimiento</strong><small>Nuevos perfiles productivos y profesionales para Jujuy.</small></li>
+          </ul>
+        </div>
+      </div>
+      <p class="about-organizer">Organiza <strong>Cámara de Comercio Exterior de Jujuy</strong>, en el marco del Desafío Digital ExpoJuy 2026.</p>
+    </section>
 
     <section class="experience-section" id="experiencia" aria-labelledby="experienceTitle">
       <div class="experience-heading reveal"><p class="section-kicker">01 / LA EXPERIENCIA</p><h2 id="experienceTitle">Hay encuentros<br />que <em>lo cambian todo.</em></h2><p>La producción, las ideas y las personas de Jujuy, en un mismo lugar.</p></div>
@@ -84,7 +140,21 @@
         <span class="film-caption" id="filmTitle">Estar ahí.<br /><em>Es otra cosa.</em></span>
         <span class="film-watch">VER VIDEO <span aria-hidden="true">▶</span></span>
       </button>
-      <p class="media-credit">Fotos y video de archivo: <a href="https://expojuy.camcomexjujuy.com.ar/" target="_blank" rel="noopener noreferrer">sitio oficial de ExpoJuy ↗</a>. No corresponden a la edición 2026.</p>
+      <p class="media-credit">Fotos y video: <a href="https://expojuy.camcomexjujuy.com.ar/" target="_blank" rel="noopener noreferrer">sitio oficial de ExpoJuy ↗</a>, recursos de referencia para esta primera etapa. Corresponden a ediciones anteriores, no a la edición 2026.</p>
+    </section>
+
+    <section class="manifesto-section reveal" aria-labelledby="manifestoTitle">
+      <div class="manifesto-bg" aria-hidden="true"></div>
+      <p class="section-kicker light">MANIFIESTO EXPOJUY 2026</p>
+      <h2 id="manifestoTitle">No es una feria.<br />Es el <em>Norte en movimiento.</em></h2>
+      <p class="manifesto-lead">Producción, tecnología y talento de Jujuy compartiendo un mismo espacio, durante tres días, para generar oportunidades reales.</p>
+      <dl class="manifesto-stats">
+        <div><dt>+150</dt><dd>Expositores esperados</dd></div>
+        <div><dt>6</dt><dd>Sectores productivos</dd></div>
+        <div><dt>3</dt><dd>Días de encuentro</dd></div>
+        <div><dt>1</dt><dd>Plataforma digital para vivirlo</dd></div>
+      </dl>
+      <p class="media-credit">Identidad visual y contenidos propios, desarrollados para el Desafío Digital ExpoJuy 2026.</p>
     </section>
 
     <section class="hero planner" id="planificar">
@@ -138,34 +208,48 @@
           <button class="filter" data-filter="energia" aria-pressed="false">Energía</button>
           <button class="filter" data-filter="industria" aria-pressed="false">Industria</button>
           <button class="filter" data-filter="logistica" aria-pressed="false">Logística</button>
+          <button class="filter" data-filter="agroindustria" aria-pressed="false">Agroindustria</button>
+          <button class="filter" data-filter="mineria" aria-pressed="false">Minería</button>
         </div>
       </div>
 
-      <div class="results-meta"><span id="resultsCount">4 oportunidades encontradas</span><span class="demo-label">Contenido demostrativo</span></div>
+      <div class="results-meta"><span id="resultsCount">6 oportunidades encontradas</span><span class="demo-label">Contenido demostrativo</span></div>
       <div class="exhibitor-grid" id="exhibitorGrid">
         <article class="exhibitor-card featured" data-sector="tecnologia" data-search="punatech tecnología datos automatización inteligencia artificial">
           <div class="card-index">01</div>
-          <div class="sector-icon technology" aria-hidden="true">PT</div>
+          <img class="sector-icon technology exhibitor-art" src="img/tech_1.ico" alt="" />
           <div class="exhibitor-content"><p>Tecnología · Stand A12</p><h3>PunaTech</h3><span>Automatización y datos para la producción regional.</span></div>
           <button class="save-button" data-save-id="ex-punatech" data-title="PunaTech" data-meta="Stand A12 · Tecnología" data-kind="Expositor" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Guardar</span></button>
         </article>
         <article class="exhibitor-card" data-sector="energia" data-search="andina solar energía renovable paneles sustentabilidad">
           <div class="card-index">02</div>
-          <div class="sector-icon energy" aria-hidden="true">AS</div>
+          <div class="sector-icon energy" aria-hidden="true"><svg class="rubro-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1" /></svg></div>
           <div class="exhibitor-content"><p>Energía · Stand B08</p><h3>Andina Solar</h3><span>Soluciones renovables para empresas y comunidades.</span></div>
           <button class="save-button" data-save-id="ex-andina" data-title="Andina Solar" data-meta="Stand B08 · Energía" data-kind="Expositor" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Guardar</span></button>
         </article>
         <article class="exhibitor-card" data-sector="industria" data-search="litica circular industria minería reciclaje economía circular">
           <div class="card-index">03</div>
-          <div class="sector-icon industry" aria-hidden="true">LC</div>
+          <div class="sector-icon industry" aria-hidden="true"><svg class="rubro-icon" viewBox="0 0 24 24"><path d="M3 20V11l5 3.4V11l5 3.4V11l6-4v13Z" /><path d="M3 20h18M7 20v-3.4M12 20v-3.4M17 20v-5" /></svg></div>
           <div class="exhibitor-content"><p>Industria · Stand C21</p><h3>Lítica Circular</h3><span>Procesos industriales con foco en economía circular.</span></div>
           <button class="save-button" data-save-id="ex-litica" data-title="Lítica Circular" data-meta="Stand C21 · Industria" data-kind="Expositor" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Guardar</span></button>
         </article>
         <article class="exhibitor-card" data-sector="logistica" data-search="norte logística transporte comercio exterior distribución">
           <div class="card-index">04</div>
-          <div class="sector-icon logistics" aria-hidden="true">NL</div>
+          <div class="sector-icon logistics" aria-hidden="true"><svg class="rubro-icon" viewBox="0 0 24 24"><rect x="1.5" y="8" width="12.5" height="8" rx="1" /><path d="M14 11h4l3.5 3v2h-7.5Z" /><circle cx="6" cy="18.2" r="1.7" /><circle cx="17.5" cy="18.2" r="1.7" /></svg></div>
           <div class="exhibitor-content"><p>Logística · Stand D05</p><h3>Norte Logística</h3><span>Transporte inteligente y conexión con mercados regionales.</span></div>
           <button class="save-button" data-save-id="ex-norte" data-title="Norte Logística" data-meta="Stand D05 · Logística" data-kind="Expositor" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Guardar</span></button>
+        </article>
+        <article class="exhibitor-card" data-sector="agroindustria" data-search="puna agro agroindustria producción agrícola ganadera valor agregado economía regional">
+          <div class="card-index">05</div>
+          <div class="sector-icon agriculture" aria-hidden="true"><svg class="rubro-icon" viewBox="0 0 24 24"><path d="M12 21V9" /><path d="M12 9c0-4-3-6.5-6-7 0 4 1.6 6.7 6 7Z" /><path d="M12 13c0-3.6 2.6-5.8 5.2-6.3 0 3.6-1.4 5.9-5.2 6.3Z" /><path d="M8.5 21h7" /></svg></div>
+          <div class="exhibitor-content"><p>Agroindustria · Stand E10</p><h3>Puna Agro</h3><span>Valor agregado a la producción agrícola y ganadera regional.</span></div>
+          <button class="save-button" data-save-id="ex-punaagro" data-title="Puna Agro" data-meta="Stand E10 · Agroindustria" data-kind="Expositor" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Guardar</span></button>
+        </article>
+        <article class="exhibitor-card" data-sector="mineria" data-search="andes litio minería litio puna minerales estratégicos sustentable exploración">
+          <div class="card-index">06</div>
+          <div class="sector-icon mining" aria-hidden="true"><svg class="rubro-icon" viewBox="0 0 24 24"><path d="M2 20 9 6l4 7 2.5-3.5L22 20Z" /><circle cx="18" cy="5" r="1.6" /></svg></div>
+          <div class="exhibitor-content"><p>Minería · Stand E22</p><h3>Andes Litio</h3><span>Exploración y producción sustentable de litio y minerales estratégicos.</span></div>
+          <button class="save-button" data-save-id="ex-andeslitio" data-title="Andes Litio" data-meta="Stand E22 · Minería" data-kind="Expositor" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Guardar</span></button>
         </article>
       </div>
       <div class="empty-state" id="emptyResults" hidden><strong>No encontramos resultados.</strong><span>Probá con otro rubro o una búsqueda más amplia.</span></div>
@@ -178,25 +262,55 @@
           <h2>Tu día,<br /><span>sin cruces.</span></h2>
           <p>Armá una agenda personal. El sistema conecta cada actividad con su sala y ubicación dentro del predio.</p>
           <div class="day-tabs" role="tablist" aria-label="Días del evento">
-            <button class="day active" role="tab" aria-selected="true">Jue 8</button>
-            <button class="day" role="tab" aria-selected="false">Vie 9</button>
-            <button class="day" role="tab" aria-selected="false">Sáb 10</button>
+            <button class="day active" role="tab" aria-selected="true" data-day="jue">Jue 8</button>
+            <button class="day" role="tab" aria-selected="false" data-day="vie">Vie 9</button>
+            <button class="day" role="tab" aria-selected="false" data-day="sab">Sáb 10</button>
           </div>
         </div>
-        <div class="timeline" aria-label="Actividades del jueves 8">
-          <article class="timeline-item now">
+        <div class="timeline" id="timeline" aria-label="Actividades del jueves 8">
+          <article class="timeline-item now" id="timelineItem0">
             <time>10:30</time><div class="timeline-dot"></div>
-            <div class="activity-card"><div><p><span class="live-pill">RECOMENDADA</span> Auditorio Central</p><h3>IA aplicada a la producción regional</h3><span>Innovación · 45 min</span></div><button class="save-button compact" data-save-id="ag-ia" data-title="IA aplicada a la producción regional" data-meta="10:30 · Auditorio Central" data-kind="Actividad" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Sumar</span></button></div>
+            <div class="activity-card"><div><p><span class="live-pill">RECOMENDADA</span> <span class="timeline-location">Auditorio Central</span></p><h3>IA aplicada a la producción regional</h3><span class="timeline-meta">Innovación · 45 min</span></div><button class="save-button compact" data-save-id="ag-ia" data-title="IA aplicada a la producción regional" data-meta="10:30 · Auditorio Central" data-kind="Actividad" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Sumar</span></button></div>
           </article>
-          <article class="timeline-item">
+          <article class="timeline-item" id="timelineItem1">
             <time>12:00</time><div class="timeline-dot"></div>
-            <div class="activity-card"><div><p>Sala Norte</p><h3>El futuro de la energía en la región</h3><span>Energía · 60 min</span></div><button class="save-button compact" data-save-id="ag-energia" data-title="El futuro de la energía en la región" data-meta="12:00 · Sala Norte" data-kind="Actividad" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Sumar</span></button></div>
+            <div class="activity-card"><div><p><span class="timeline-location">Sala Norte</span></p><h3>El futuro de la energía en la región</h3><span class="timeline-meta">Energía · 60 min</span></div><button class="save-button compact" data-save-id="ag-energia" data-title="El futuro de la energía en la región" data-meta="12:00 · Sala Norte" data-kind="Actividad" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Sumar</span></button></div>
           </article>
-          <article class="timeline-item">
+          <article class="timeline-item" id="timelineItem2">
             <time>14:15</time><div class="timeline-dot"></div>
-            <div class="activity-card"><div><p>Espacio Conecta</p><h3>Ronda de vinculación empresarial</h3><span>Negocios · 90 min</span></div><button class="save-button compact" data-save-id="ag-ronda" data-title="Ronda de vinculación empresarial" data-meta="14:15 · Espacio Conecta" data-kind="Actividad" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Sumar</span></button></div>
+            <div class="activity-card"><div><p><span class="timeline-location">Espacio Conecta</span></p><h3>Ronda de vinculación empresarial</h3><span class="timeline-meta">Negocios · 90 min</span></div><button class="save-button compact" data-save-id="ag-ronda" data-title="Ronda de vinculación empresarial" data-meta="14:15 · Espacio Conecta" data-kind="Actividad" type="button" aria-pressed="false"><span aria-hidden="true">＋</span><span class="save-label">Sumar</span></button></div>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section class="news-section section reveal" id="noticias" aria-labelledby="newsTitle">
+      <div class="section-heading">
+        <div><p class="section-kicker">PANEL DE NOVEDADES</p><h2 id="newsTitle">Lo último,<br />antes que nadie.</h2></div>
+        <p>Novedades oficiales sobre acreditaciones, rondas de negocio y las herramientas digitales del evento.</p>
+      </div>
+      <div class="news-grid">
+        <article class="news-card">
+          <span class="news-tag tag-violet">Acreditaciones</span>
+          <time datetime="2026-08-20">20 ago 2026</time>
+          <h3>Ya podés generar tu acreditación</h3>
+          <p>Empresas, estudiantes y público general ya pueden gestionar su acceso desde la sección Entradas del sitio.</p>
+          <button class="text-action-light" type="button" data-open-tickets>Gestionar acceso <span aria-hidden="true">↗</span></button>
+        </article>
+        <article class="news-card">
+          <span class="news-tag tag-purple">Rondas de negocio</span>
+          <time datetime="2026-08-05">05 ago 2026</time>
+          <h3>Se abrió la inscripción a las rondas de vinculación</h3>
+          <p>Cupos limitados para empresas interesadas en generar contactos comerciales durante los 3 días del evento.</p>
+          <a class="text-action-light" href="#agenda">Ver agenda <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="news-card">
+          <span class="news-tag tag-cyan">Tecnología</span>
+          <time datetime="2026-07-18">18 jul 2026</time>
+          <h3>Sumamos un asistente virtual para recorrer la expo</h3>
+          <p>JujuyBot ayuda a encontrar empresas, actividades y ubicaciones dentro del predio en tiempo real.</p>
+          <button class="text-action-light" type="button" data-open-assistant>Probar el asistente <span aria-hidden="true">↗</span></button>
+        </article>
       </div>
     </section>
 
@@ -217,6 +331,10 @@
           <button class="stand-marker" data-stand="B08" style="--x: 64%; --y: 20%" aria-label="Seleccionar stand B08">B08</button>
           <button class="stand-marker" data-stand="C21" style="--x: 47%; --y: 68%" aria-label="Seleccionar stand C21">C21</button>
           <button class="stand-marker" data-stand="D05" style="--x: 82%; --y: 72%" aria-label="Seleccionar stand D05">D05</button>
+          <button class="venue-marker" data-venue="auditorio" style="--x: 38%; --y: 14%" aria-label="Auditorio Central"><span aria-hidden="true">◈</span></button>
+          <button class="venue-marker" data-venue="salanorte" style="--x: 74%; --y: 40%" aria-label="Sala Norte"><span aria-hidden="true">◈</span></button>
+          <button class="venue-marker" data-venue="conecta" style="--x: 28%; --y: 80%" aria-label="Espacio Conecta"><span aria-hidden="true">◈</span></button>
+          <div class="map-legend" aria-hidden="true"><span><i class="legend-dot stand"></i>Stand de expositor</span><span><i class="legend-dot venue"></i>Auditorio / actividad</span></div>
           <div class="you-are-here"><span></span> Estás acá</div>
           <div class="route-status" id="routeStatus" role="status">Seleccioná tus destinos para generar el recorrido.</div>
         </div>
@@ -237,6 +355,115 @@
       </div>
     </section>
 
+    <section class="sponsors-section section reveal" id="sponsors" aria-labelledby="sponsorsTitle">
+      <div class="section-heading">
+        <div><p class="section-kicker">04 · SPONSORS</p><h2 id="sponsorsTitle">Marcas que impulsan<br />la producción del <em>Norte.</em></h2></div>
+        <p>Empresas y organismos que acompañan ExpoJuy 2026. Los espacios de patrocinio se confirman junto con la organización durante la etapa de desarrollo.</p>
+      </div>
+      <div class="sponsor-tier">
+        <p class="sponsor-tier-label">ORGANIZA</p>
+        <div class="sponsor-row sponsor-row-lead">
+          <div class="sponsor-slot filled"><img src="./EXPOJUY_Logo2026/logo_camcomext.png" alt="Cámara de Comercio Exterior de Jujuy" loading="lazy" /></div>
+        </div>
+      </div>
+      <div class="sponsor-tier">
+        <p class="sponsor-tier-label">SPONSOR PRINCIPAL</p>
+        <div class="sponsor-row sponsor-row-lead">
+          <div class="sponsor-slot"><span>Espacio disponible</span></div>
+        </div>
+      </div>
+      <div class="sponsor-tier">
+        <p class="sponsor-tier-label">SPONSORS ORO</p>
+        <div class="sponsor-row">
+          <div class="sponsor-slot"><span>Espacio disponible</span></div>
+          <div class="sponsor-slot"><span>Espacio disponible</span></div>
+          <div class="sponsor-slot"><span>Espacio disponible</span></div>
+        </div>
+      </div>
+      <div class="sponsor-tier">
+        <p class="sponsor-tier-label">SPONSORS PLATA</p>
+        <div class="sponsor-row sponsor-row-compact">
+          <div class="sponsor-slot"><span>Espacio disponible</span></div>
+          <div class="sponsor-slot"><span>Espacio disponible</span></div>
+          <div class="sponsor-slot"><span>Espacio disponible</span></div>
+          <div class="sponsor-slot"><span>Espacio disponible</span></div>
+        </div>
+      </div>
+      <a class="sponsor-cta" href="#contacto" data-motivo="sponsor">Quiero ser sponsor de ExpoJuy 2026 <span aria-hidden="true">↗</span></a>
+    </section>
+
+    <section class="faq-section section reveal" id="faq" aria-labelledby="faqTitle">
+      <div class="section-heading">
+        <div><p class="section-kicker">PREGUNTAS FRECUENTES</p><h2 id="faqTitle">Todo lo que<br />necesitás saber.</h2></div>
+        <p>Preguntas y respuestas de muestra para representar la experiencia. Los horarios, servicios y condiciones definitivos serán confirmados por la organización.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" name="faq-group">
+          <summary>¿Cuáles son los horarios de ExpoJuy 2026?</summary>
+          <p>El predio abre de 9:00 a 20:00 durante los tres días del evento. Las conferencias y rondas de negocio tienen horarios específicos disponibles en la sección Agenda.</p>
+        </details>
+        <details class="faq-item" name="faq-group">
+          <summary>¿Cómo llego al predio? ¿Hay transporte?</summary>
+          <p>Está previsto un servicio de traslado gratuito desde puntos céntricos de San Salvador de Jujuy. El predio también es accesible en vehículo particular y transporte público.</p>
+        </details>
+        <details class="faq-item" name="faq-group">
+          <summary>¿Hay estacionamiento disponible?</summary>
+          <p>Sí, el predio cuenta con estacionamiento para visitantes y expositores, con capacidad limitada por orden de llegada.</p>
+        </details>
+        <details class="faq-item" name="faq-group">
+          <summary>¿Cómo se acredita la prensa?</summary>
+          <p>Los medios de comunicación deben completar el formulario de acreditación de prensa desde la sección Entradas, con al menos 48 horas de anticipación.</p>
+        </details>
+        <details class="faq-item" name="faq-group">
+          <summary>¿El ingreso tiene costo?</summary>
+          <p>El acceso general es sin cargo. Las rondas de negocio requieren acreditación previa con cupos limitados para empresas y compradores.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="contact-section section reveal" id="contacto" aria-labelledby="contactTitle">
+      <div class="section-heading">
+        <div><p class="section-kicker">CONTACTO</p><h2 id="contactTitle">Hablemos de tu<br /><em>participación.</em></h2></div>
+        <p>Escribinos si querés ser expositor, sponsor, sumarte a las rondas de negocio o resolver una duda sobre tu visita.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <dl>
+            <div><dt>Organiza</dt><dd>Cámara de Comercio Exterior de Jujuy</dd></div>
+            <div><dt>Sede</dt><dd>Predio ferial de Jujuy <small>(dirección a confirmar)</small></dd></div>
+            <div><dt>Correo</dt><dd>contacto@expojuy2026.ar <small>(demostrativo)</small></dd></div>
+          </dl>
+          <div class="social-block" id="redes">
+            <p class="social-label">SEGUINOS</p>
+            <div class="social-row">
+              <a class="social-icon" href="#" data-demo aria-label="Instagram de ExpoJuy (enlace a definir)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="6" fill="none" stroke="currentColor" stroke-width="1.8" /><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8" /><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" /></svg></a>
+              <a class="social-icon" href="#" data-demo aria-label="Facebook de ExpoJuy (enlace a definir)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-7h2.4l.5-3.2H14V8.6c0-.95.3-1.6 1.7-1.6H17V4.2C16.6 4.1 15.6 4 14.5 4c-2.3 0-3.9 1.4-3.9 4v2.1H8.2V13H10.6v8Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" /></svg></a>
+              <a class="social-icon" href="#" data-demo aria-label="LinkedIn de ExpoJuy (enlace a definir)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="currentColor" stroke-width="1.8" /><circle cx="8" cy="8.4" r="1.15" fill="currentColor" /><path d="M8 11.2v6.4M12.2 17.6v-3.9c0-1.5 1-2.4 2.2-2.4 1.2 0 2 .8 2 2.3v4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></svg></a>
+              <a class="social-icon" href="#" data-demo aria-label="YouTube de ExpoJuy (enlace a definir)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6.5" width="18" height="11" rx="4" fill="none" stroke="currentColor" stroke-width="1.8" /><path d="M10.3 9.6v4.8l4.4-2.4Z" fill="currentColor" /></svg></a>
+            </div>
+            <small class="social-note">Enlaces demostrativos, a definir por la organización.</small>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="contact-fields">
+            <label>Nombre y apellido<input type="text" name="nombre" placeholder="Ej. María Fernández" required /></label>
+            <label>Correo electrónico<input type="email" name="email" placeholder="nombre@correo.com" required /></label>
+          </div>
+          <label class="contact-select">Motivo de la consulta
+            <select name="motivo" id="contactMotivo">
+              <option value="expositor">Quiero ser expositor</option>
+              <option value="sponsor">Quiero ser sponsor</option>
+              <option value="prensa">Acreditación de prensa</option>
+              <option value="general">Consulta general</option>
+            </select>
+          </label>
+          <label>Mensaje<textarea name="mensaje" rows="4" placeholder="Contanos brevemente tu consulta…" required></textarea></label>
+          <button class="primary-dark contact-submit" type="submit">Enviar mensaje <span aria-hidden="true">↗</span></button>
+          <small class="assistant-disclaimer">Prototipo: este formulario es demostrativo. El canal oficial de contacto se definirá junto con la organización.</small>
+        </form>
+      </div>
+    </section>
+
     <section class="connection-band" aria-labelledby="connectionTitle">
       <p class="section-kicker light">UNA EXPERIENCIA CONTINUA</p>
       <h2 id="connectionTitle">Antes planificás.<br />Durante te orientás.<br /><span>Después conectás.</span></h2>
@@ -246,16 +473,16 @@
 
   <footer class="site-footer">
     <div class="footer-brand"><img class="official-footer-logo" src="./EXPOJUY_Logo2026/RGB/expojuy26_horizontal.png" alt="ExpoJuy: conectando países, creando oportunidades" width="2614" height="1125" loading="lazy" /></div>
-    <div class="footer-links"><a href="#inicio">Sobre ExpoJuy</a><a href="#explorar">Expositores</a><a href="#agenda">Agenda</a><a href="#mapa">Mapa</a><a href="#inicio">Noticias</a><a href="#inicio">Sponsors</a><a href="#inicio">Preguntas frecuentes</a><a href="#inicio">Contacto</a></div>
+    <div class="footer-links"><a href="#sobre">Sobre ExpoJuy</a><a href="#explorar">Expositores</a><a href="#agenda">Agenda</a><a href="#mapa">Mapa</a><a href="#noticias">Noticias</a><a href="#sponsors">Sponsors</a><a href="#faq">Preguntas frecuentes</a><a href="#contacto">Contacto</a><a href="#redes">Redes sociales</a></div>
     <div class="organizer-brand"><p>ORGANIZA</p><img src="./EXPOJUY_Logo2026/logo_camcomext.png" alt="Cámara de Comercio Exterior de Jujuy" width="1077" height="1008" loading="lazy" /></div><p class="prototype-note">Prototipo conceptual. Empresas, horarios y ubicaciones utilizados únicamente con fines demostrativos.</p>
   </footer>
 
   <nav class="mobile-nav" aria-label="Navegación móvil">
-    <a href="#inicio"><span aria-hidden="true">⌂</span>Inicio</a><a href="#explorar"><span aria-hidden="true">⌕</span>Explorar</a><a href="#agenda"><span aria-hidden="true">◷</span>Agenda</a><a href="#mapa"><span aria-hidden="true">◇</span>Mapa</a><button id="openDrawerMobile" type="button"><span aria-hidden="true">◎</span>Mi Expo</button>
+    <a href="#inicio"><span aria-hidden="true">⌂</span>Inicio</a><a href="#explorar"><span aria-hidden="true">⌕</span>Explorar</a><a href="#agenda"><span aria-hidden="true">◷</span>Agenda</a><a href="#mapa"><span aria-hidden="true">◇</span>Mapa</a><button type="button" data-open-tickets><span aria-hidden="true">▤</span>Entradas</button><button id="openDrawerMobile" type="button"><span aria-hidden="true">◎</span>Mi Expo</button>
   </nav>
 
   <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
-  <aside class="saved-drawer" id="savedDrawer" aria-labelledby="savedTitle" aria-hidden="true">
+  <aside class="saved-drawer" id="savedDrawer" inert aria-labelledby="savedTitle" aria-hidden="true">
     <div class="drawer-head"><div><p>RECORRIDO PERSONAL</p><h2 id="savedTitle">Mi ExpoJuy</h2></div><button class="close-button" id="closeDrawer" type="button" aria-label="Cerrar Mi ExpoJuy">×</button></div>
     <div class="drawer-summary"><span><b id="drawerCount">0</b> guardados</span><span>Se guarda en este dispositivo</span></div>
     <div class="saved-items" id="savedItems"></div>
@@ -278,11 +505,64 @@
     <div class="film-dialog-header"><h2 id="filmDialogTitle">ExpoJuy · Video de archivo</h2><button id="closeFilm" type="button" aria-label="Cerrar video">×</button></div>
     <video id="fullVideo" controls playsinline preload="none" poster="https://expojuy.camcomexjujuy.com.ar/build/assets/HeroFallback-C3dmciqy.jpeg"></video>
     <p id="filmError" hidden>No se pudo reproducir el video. <a href="https://expojuy.camcomexjujuy.com.ar/" target="_blank" rel="noopener noreferrer">Verlo en el sitio oficial ↗</a></p>
-    <p>Material audiovisual de ediciones anteriores de ExpoJuy.</p>
+    <p>Material audiovisual de ediciones anteriores de ExpoJuy, uso autorizado por la organización.</p>
   </dialog>
+
+  <dialog class="tickets-dialog" id="ticketsDialog" aria-labelledby="ticketsDialogTitle">
+    <form method="dialog" class="dialog-close-row"><button aria-label="Cerrar entradas">×</button></form>
+    <div class="tickets-view" id="ticketsStepSelect">
+      <p class="section-kicker">ACREDITACIÓN Y ACCESOS</p>
+      <h2 id="ticketsDialogTitle">Gestioná tu acceso a ExpoJuy 2026</h2>
+      <p class="tickets-lead">Elegí la categoría que corresponde a tu visita. La acreditación es individual e intransferible.</p>
+      <div class="ticket-options" role="radiogroup" aria-label="Categoría de acceso">
+        <label class="ticket-option active">
+          <input type="radio" name="ticketCategory" form="ticketForm" value="general" checked />
+          <span class="ticket-option-index">01</span>
+          <div class="ticket-option-body"><strong>General</strong><small>Sin cargo · Acreditación online</small><p>Acceso a pabellones, expositores y actividades abiertas al público durante los 3 días.</p></div>
+        </label>
+        <label class="ticket-option">
+          <input type="radio" name="ticketCategory" form="ticketForm" value="estudiantes" />
+          <span class="ticket-option-index">02</span>
+          <div class="ticket-option-body"><strong>Estudiantes</strong><small>Sin cargo · Credencial institucional</small><p>Para estudiantes e instituciones educativas de Jujuy y la región.</p></div>
+        </label>
+        <label class="ticket-option">
+          <input type="radio" name="ticketCategory" form="ticketForm" value="rondas" />
+          <span class="ticket-option-index">03</span>
+          <div class="ticket-option-body"><strong>Rondas de Negocio</strong><small>Cupo limitado · Aprobación previa</small><p>Para empresas y compradores interesados en las rondas de vinculación empresarial.</p></div>
+        </label>
+      </div>
+      <form class="ticket-form" id="ticketForm">
+        <div class="ticket-fields">
+          <label>Nombre y apellido<input type="text" name="fullname" placeholder="Ej. Juan Cruz" required /></label>
+          <label>Correo electrónico<input type="email" name="email" placeholder="nombre@correo.com" required /></label>
+        </div>
+        <button class="primary-dark ticket-confirm" type="submit">Generar mi acreditación <span aria-hidden="true">↗</span></button>
+      </form>
+      <p class="assistant-disclaimer">Prototipo: este flujo es demostrativo, sin pagos ni emisión de entradas válidas. La emisión real de acreditaciones y su eventual costo se definirán junto a la organización en la etapa de desarrollo.</p>
+    </div>
+    <div class="tickets-view" id="ticketsStepConfirm" hidden>
+      <div class="ticket-badge">
+        <div class="ticket-badge-head"><span id="badgeCategory">General</span><b>EXPOJUY 2026</b></div>
+        <div class="ticket-qr" aria-hidden="true"></div>
+        <p class="ticket-badge-name" id="badgeName">Ana Torres</p>
+        <p class="ticket-badge-code">Código demostrativo · <span id="badgeCode">EXJ-0000</span></p>
+      </div>
+      <p>Vista previa para <strong id="badgeEmail"></strong>. No se envió ningún correo. Esta credencial es demostrativa y no habilita el ingreso al predio.</p>
+      <div class="tickets-actions">
+        <button class="secondary-button" id="ticketsAnother" type="button">Generar otra</button>
+        <button class="primary-dark" id="ticketsDone" type="button">Listo</button>
+      </div>
+    </div>
+  </dialog>
+
+  <button class="assistant-fab" id="openAssistantFab" type="button" data-open-assistant aria-label="Abrir JujuyBot, el asistente de ExpoJuy">
+    <span class="assistant-orb" aria-hidden="true"></span><span class="assistant-fab-label">JujuyBot</span>
+  </button>
 
   <script src="./app.js"></script>
   <script src="./experience.js"></script>
+  <script src="./mejoras.js"></script>
+  <script src="./ampliacion.js"></script>
 </body>
 </html>
 

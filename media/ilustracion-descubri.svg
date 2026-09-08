@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="gDescubri" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2c1f45" />
+      <stop offset=".55" stop-color="#48278f" />
+      <stop offset="1" stop-color="#774ff0" />
+    </linearGradient>
+    <linearGradient id="gSun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bb8cff" />
+      <stop offset="1" stop-color="#25c0d4" />
+    </linearGradient>
+  </defs>
+  <rect width="560" height="500" fill="url(#gDescubri)" />
+  <g opacity=".5" stroke="#ffffff" stroke-width="1">
+    <path d="M0 250 H560 M0 320 H560 M0 390 H560" opacity=".08" />
+  </g>
+  <circle cx="150" cy="150" r="62" fill="url(#gSun)" opacity=".9" />
+  <g fill="none" stroke="#f7f7fa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
+    <path d="M40 400 L170 240 L245 330 L330 190 L440 400 Z" />
+    <path d="M170 240 L200 290 L245 330" />
+    <path d="M330 190 L365 260 L440 400" />
+  </g>
+  <g fill="#f7f7fa" opacity=".85">
+    <circle cx="170" cy="240" r="6" />
+    <circle cx="330" cy="190" r="6" />
+    <circle cx="245" cy="330" r="6" />
+  </g>
+  <rect x="0" y="400" width="560" height="100" fill="#18151f" opacity=".55" />
+</svg>
